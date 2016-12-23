@@ -9,49 +9,47 @@
 //* - Создайте массив $date с пятью элементами
 //* - C помощью генератора случайных чисел забейте массив $date юниксовыми метками
 $date = [
-    rand(1, time()),
-    rand(1, time()),
-    rand(1, time()),
-    rand(1, time()),
-    rand(1, time()),
+    rand(0, time()),
+    rand(0, time()),
+    rand(0, time()),
+    rand(0, time()),
+    rand(0, time()),
 ];
 
-echo $date[0] .'<br/>';
-echo $date[1] .'<br/>';
-echo $date[2] .'<br/>';
-echo $date[3] .'<br/>';
-echo $date[4] .'<br/>';
-echo $date[5] .'<br/>';
-//* - Сделайте вывод сообщения на экран о том, какой день в сгенерированном массиве получился наименьшим, а какой месяц наибольшим
-echo "Наименьший день ";
-echo min(date('d', $date[0]),
+//* - Сделайте вывод сообщения на экран о том, какой день в сгенерированном массиве получился наименьшим,
+// а какой месяц наибольшим
+
+$min_day = min(date('d', $date[0]),
          date('d', $date[1]),
          date('d', $date[2]),
          date('d', $date[3]),
          date('d', $date[4]),
          date('d', $date[5])
 );
+echo "Наименьший день " . $min_day;
 echo '<br/>';
 //генерируем какой месяц самый большой
-echo "Наименьший месяц ";
-echo max(date('m', $date[0]),
-    date('m', $date[1]),
-    date('m', $date[2]),
-    date('m', $date[3]),
-    date('m', $date[4]),
-    date('m', $date[5])
+$max_month = max(date('F', $date[0]),
+    date('F', $date[1]),
+    date('F', $date[2]),
+    date('F', $date[3]),
+    date('F', $date[4]),
+    date('F', $date[5])
 );
+echo "Наименьший месяц - " . $max_month;
 echo '<br/>';
 //* - Отсортируйте массив по возрастанию дат
 sort($date);
 //* - С помощью функция для работы с массивами извлеките последний элемент массива в новую переменную $selected
 $selected = array_pop($date);
 //* - C помощью функции date() выведите $selected на экран в формате "дд.мм.ГГ ЧЧ:ММ:СС"
- echo date('m.d.Y  H:i:s', $selected);
+echo date('m.d.Y  H:i:s', $selected);
 echo '<br/>';
 //* - Выставьте часовой пояс для Нью-Йорка, и сделайте вывод снова, чтобы проверить, что часовой пояс был изменен успешно
+echo 'Текущий часовой пояс - ' . date_default_timezone_get();
+echo '<br/>';
 date_default_timezone_set('America/New_York');
-echo date_default_timezone_get();
+echo 'Часовой пояс после изменения - ' . date_default_timezone_get();
 
 
 
